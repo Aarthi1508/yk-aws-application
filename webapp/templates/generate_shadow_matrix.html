@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <img src="{% static 'images/tamu-icon.png' %}" alt="Icon Image" width="30" height="30">
+            <div>
+                <div>Texas A&M University</div>
+                <div>Department of Construction Science</div>
+            </div>
+            <a href="https://www.hamresearchgroup.com/" class="research-group">HAM Research Group @ TAMU</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Smart City Application - Education Material</h1>
+        <form id="timestampForm" method="post" action="{% url 'shadow-analysis' %}">
+            {% csrf_token %}
+            <div class="timestamp-input-container">
+                <p>Enter timestamp: </p>
+                <input type="text" id="timestampInput" name="timestampInput" placeholder="YYYY-MM-DD HH:MM:SS">
+            </div>
+            <div class="timestamp-note-container">
+                <p><i class="fas fa-exclamation-triangle" style="color: orange;"></i> <i>If no timestamp is provided, the current timestamp will be used by default.</i></p>
+            </div>
+        </form>
+        <div id="buttonContainer">
+            <button id="generateShadowMatrix">Generate Shadow Matrix</button>
+            <!-- "View Results" button will be appended here -->
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="loader" style="display: none;">
+            <i class="fas fa-spinner fa-spin fa-3x"></i>
+        </div>
+        <div id="shadowMatrixResult"></div>
+        <div id="map" style="height: 1000px;"></div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        // Define latitude and longitude arrays
+        var latitudeArray = {{ latitude_array| safe }};
+        var longitudeArray = {{ longitude_array| safe }};
+
+        // Initialize Mapbox map
+        mapboxgl.accessToken = '{{ mapbox_access_token }}';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            // style: '{{ MAPBOX_3D_STYLE }}', // Valid Mapbox style URL
+            style: 'mapbox://styles/mapbox/streets-v11',
+            zoom: 16,
+            center: [{{ center_lon }}, {{ center_lat }}]
+        });
+
+        // Add markers for each latitude and longitude point
+        latitudeArray.forEach((lat, index) => {
+            var lon = longitudeArray[index];
+            new mapboxgl.Marker()
+                .setLngLat([lon, lat])
+                .addTo(map);
+        });
+
+        // Draw a bounding box around the center coordinates
+        var bbox = turf.bbox(turf.point([{{ center_lon }}, {{ center_lat }}]));
+        var bboxPolygon = turf.bboxPolygon(bbox);
+        map.on('load', function () {
+            map.addSource('bbox', {
+                'type': 'geojson',
+                'data': bboxPolygon
+            });
+
+            map.addLayer({
+                'id': 'bbox-highlight',
+                'type': 'fill',
+                'source': 'bbox',
+                'layout': {},
+                'paint': {
+                    'fill-color': '#f00', // Highlight color
+                    'fill-opacity': 0.5 // Opacity
+                }
+            });
+        });
+
+    </script>
+    <script>
+        // Initialize Flatpickr datetime picker
+        flatpickr("#timestampInput", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i:S",
+            time_24hr: true,
+            enableSeconds: true,
+            maxDate: "today"
+        });
+    </script>
+
+
+</body>
+
+</html>
