@@ -17,9 +17,11 @@ What things you need to install the software and how to install them:
 A step by step series of examples that tell you how to get a development env running:
 
 1. Clone this repository:
+
    git clone https://github.com/Aarthi1508/yk-aws-application.git
 
 2. Install the dependencies 
+
    pip install webapp/requirements.txt
    
    The `requirements.txt` file should contain the following packages:
@@ -48,14 +50,14 @@ A step by step series of examples that tell you how to get a development env run
    
    scipy==1.7.3
 
-4. Apply the migrations
+3. Apply the migrations
    python manage.py makemigrations
    python manage.py migrate
 
-5. Start the development server
+4. Start the development server
    python manage.py runserver
 
-6. Visit `http://localhost:8000` in your browser to view the project.
+5. Visit `http://localhost:8000` in your browser to view the project.
 
 
 
