@@ -25,26 +25,37 @@ A step by step series of examples that tell you how to get a development env run
    The `requirements.txt` file should contain the following packages:
    
    django==3.2
+   
    numpy==1.21.2
+   
    pvlib==0.8.0
+   
    mapbox==0.18.0
+   
    matplotlib==3.4.3
+   
    pymongo[srv]==4.0.1
+   
    rasterio==1.2.10
+   
    plotly==5.3.1
+   
    python-dotenv==0.19.2
+   
    django-cors-headers==3.8.0
+   
    pandas==1.3.3
+   
    scipy==1.7.3
 
-3. Apply the migrations
+4. Apply the migrations
    python manage.py makemigrations
    python manage.py migrate
 
-4. Start the development server
+5. Start the development server
    python manage.py runserver
 
-5. Visit `http://localhost:8000` in your browser to view the project.
+6. Visit `http://localhost:8000` in your browser to view the project.
 
 
 
