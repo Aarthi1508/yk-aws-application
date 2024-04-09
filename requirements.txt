@@ -4,7 +4,7 @@ pvlib==0.8.0
 mapbox==0.18.0
 matplotlib==3.4.3
 pymongo[srv]==4.0.1
-rasterio==1.2.10
+rasterio
 plotly==5.3.1
 python-dotenv==0.19.2
 django-cors-headers==3.8.0
