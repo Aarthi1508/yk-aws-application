@@ -38,7 +38,7 @@ A step by step series of examples that tell you how to get a development env run
    
    pymongo[srv]==4.0.1
    
-   rasterio==1.2.10
+   rasterio
    
    plotly==5.3.1
    
