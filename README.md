@@ -44,7 +44,7 @@ A step by step series of examples that tell you how to get a development env run
                ```
 9. Install the dependencies 
 
-   ```pip install webapp/requirements.txt```
+   ```pip install -r webapp/requirements.txt```
    
    The `requirements.txt` file should contain the following packages:
    
