@@ -309,10 +309,6 @@ def visualize_shadow_matrix(request):
                          str(minute).zfill(2) + '-' +
                          str(second).zfill(2) + '.png')
         
-    # data_path = os.path.join(BASE_DIR, 'webapp', 'static', 'results', 'hour-%2s'% str(hour).zfill(2) + "-minute-%2s"% str(minute).zfill(2) + ".png")
-        
-    # print(shadow_matrix_lst[0], shadow_matrix_lst[1])
-    
     
     # Initialize an empty list to store the values
     values_list = []

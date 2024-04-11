@@ -1,3 +1,5 @@
 .env
 __pycache__/
-webapp/results/*
+webapp/static/results/*
+webapp/templates/[0-9]*
+db.sqlite3
