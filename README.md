@@ -21,26 +21,28 @@ A step by step series of examples that tell you how to get a development env run
 3. Install ipykernel by the following command:
                ```
                <pip install ipykernel>
+               ```
       			OR
+             ```
       			<conda install -c anaconda ipykernel>
                ```
-4. Create conda virtual environment
+5. Create conda virtual environment
                ```
                <conda create -n awsapplication python=3.8.5>
                ```
-5. Activate the conda virtual environment
+6. Activate the conda virtual environment
               ```
               <conda activate awsapplication>
               ```
-6. Install Jupyter Notebook
+7. Install Jupyter Notebook
               ```
                <pip install notebook>
                ```
-7. Update Kernel into Jupyter Notebook             
+8. Update Kernel into Jupyter Notebook             
                ```
                <python -m ipykernel install --user --name awsapplication --display-name awsapplication>
                ```
-8. Install the dependencies 
+9. Install the dependencies 
 
    pip install webapp/requirements.txt
    
@@ -70,14 +72,14 @@ A step by step series of examples that tell you how to get a development env run
    
    scipy==1.7.3
 
-9. Apply the migrations
+10. Apply the migrations
    python manage.py makemigrations
    python manage.py migrate
 
-10. Start the development server
+11. Start the development server
    python manage.py runserver
 
-11. Visit `http://localhost:8000` in your browser to view the project.
+12. Visit `http://localhost:8000` in your browser to view the project.
 
 
 
