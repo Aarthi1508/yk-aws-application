@@ -16,7 +16,7 @@ What things you need to install the software and how to install them:
 
 A step by step series of examples that tell you how to get a development env running:
 
-1. Download the repository as ZIP
+1. Download the repository as ZIP.
 2. Move to the application directory.
 3. Install ipykernel by the following command:
                ```
